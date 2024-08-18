@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<div class="row mt-4 p-3"><!--main section start second row start -->
+    <!-- Main section -->
+    <div class="col-md-3"><!--side bar start-->
+        <h5>Filter By Category</h5><hr>
+        <a href="/product">All</a><br>
+        <a href="/catfilter/1">Mobile</a><br>
+        <a href="/catfilter/2">Shoes</a><br>
+        <a href="/catfilter/3">Cloth</a><br>
+        <br>
+
+        <h5>Filter By Price</h5><hr>
+        <form action="/pricefilter"method="get">
+          <div class="mb-1">
+            <label for="Input1" class="form-label">Min</label>
+            <input type="number" class="form-control" id="Input1" name="min">
+        </div>
+        <div class="mb-1">
+          <label for="Input2" class="form-label">Max</label>
+          <input type="number" class="form-control" id="Input2" name="max">
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+        <br>
+        <h5>Sort By Price</h5><hr>
+        <a href="/sort/1">High To Low</a><br>
+        <a href="/sort/0">Low To High</a>
+      </div><!--side bar end-->
+    <div class="col-md-9"><!--product list section start-->
+          <div class="row shadow-lg p-3 mb-5 bg-body rounded">
+            {% for i in data %}
+            <div class="col-md-3 shadow-lg p-3 mb-5 bg-body rounded">
+              <div class="card" style="width: 100%">
+                <img src="{{i.pimage.url}}" class="card-img-top" alt="..." height="150px">
+                
+                <div class="card-body">
+                  <h5 class="card-title">{{i.pname}}</h5>
+                  <p class="card-text"><br>Price: <br>{{i.price}}</p>
+                  <a href="/product_detail/{{i.id}}" class="btn btn-primary">See Deatils</a>
+                </div>
+              </div>
+            </div><!--product 1 end-->
+            {% endfor %}
+            {% if errmsg %}
+                <div class="alert alert-danger" role="=alert">
+                  {{errmsg}}
+
+                </div>
+            {% endif %}
+          </div>
+    </div><!--product list section end-->
+</div><!--main section end second row end -->
+
+
+{% endblock 'main' %}

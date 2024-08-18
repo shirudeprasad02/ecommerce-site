@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+
+<div class="row mt-4 "><!--main section start from second row-->
+    <div class="col-md-9">
+        <div class="mt-2 shadow p-3" >
+            <h5>Customer  Deatils</h5><hr>
+            {% for i in data %}
+            {% if forloop.counter == 1 %}
+            <p><strong>Customer Name:</strong>{{i.uid.username}}</p>
+            <p><strong>Email:</strong>{{ i.uid.email }}</p>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% for i in data %}
+        <div class="row shadow p-3 mx-auto"> 
+            <div class="col-md-6 "><!--image div start-->
+                <img src="{{i.pid.pimage.url}}" alt="" width="414px">
+
+             </div><!--image div end-->
+              <div class="col-md-6 "><!--product detail  div start-->
+                <p><strong>Product Name:</strong>{{i.pid.pname}}</p>
+                {% if i.pid.cat == 1 %}
+                <p><strong>Product Detail:</strong>Mobile</p>
+                {% elif i.pid.cat == 2 %}
+                <p><strong>Product Detail:</strong> Showes</p>
+                {% else %}
+                <p><strong>Product Detail:</strong>Clouth</p>
+                {% endif %}
+                <!-- <p><strong>Category:</strong>{{i.pid.cat}}</p> -->
+                <p><strong>Product Detail:</strong>{{i.pid.pdetail}}</p>
+                <p><strong>Price:</strong>{{i.pid.price}}</p>
+                <p>
+                  <strong>Quantity:</strong>
+                  <a href="update/0/{{i.id}}"><button class="btn btn-danger">-</button></a>
+                  <input type="text" value="{{i.qty}}">
+                  <a href="update/1/{{i.id}}"><button class="btn btn-danger">+</button></a>
+                </p>
+                <p><a href="remove/{{i.id}}"><button class="btn btn-danger">Remove</button></a></p>
+
+              </div><!--product detail  div end-->
+            
+        </div>
+        {% endfor %}
+        
+    </div>
+    <div class="col-md-3 "> 
+        <div class="p-3 shadow">
+            <h5>
+                Price Detail
+            </h5>
+            <p><b>Price({{n}} Items):</b>RS:{{total}}</p>
+            <p><b>Total Price:</b>RS:{{total}}</p>
+            <p><a href="/place_order"><button class="btn btn-danger"> Place Order</button></a></p>
+        </div>
+    </div>
+</div>
+{% endblock 'main' %}

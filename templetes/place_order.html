@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block 'main' %}
+
+<div class="row mt-4 "><!--main section start from second row-->
+    <div class="col-md-9">
+        <div class="mt-2 shadow p-3" >
+            <h5>Customer  Deatils</h5><hr>
+            {% for i in data %}
+            {% if forloop.counter == 1 %}
+            <p><strong>Customer Name:</strong>{{i.uid.username}}</p>
+            <p><strong>Email:</strong>{{ i.uid.email }}</p>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row bg-danger text-white mx-auto mt-2 p-1">
+            <h5>Order summary</h5>
+        </div>
+        {% for i in data %}
+        <div class="row shadow p-3 mx-auto"> 
+            <div class="col-md-6 "><!--image div start-->
+                <img src="{{i.pid.pimage.url}}" alt="" width="414px">
+
+              </div><!--image div end-->
+              
+              <div class="col-md-6 "><!--product detail  div start-->
+                <p><strong>Product Name:</strong>{{i.pid.pname}}</p>
+                
+                <p><strong>Category:</strong>{% if i.pid.cat == 1 %}
+                    <p><strong>Product Detail:</strong>Mobile</p>
+                    {% elif i.pid.cat == 2 %}
+                    <p><strong>Product Detail:</strong> Showes</p>
+                    {% else %}
+                    <p><strong>Product Detail:</strong>Clouth</p>
+                    {% endif %}</p>
+                <p><strong>Product Detail:</strong>{{i.pid.pdetail}} </p>
+                <p><strong>Price(Per item):</strong>{{i.pid.price}}</p>
+                <p><strong>Quantity:</strong>{{i.qty}}</p>
+                <p><strong>Total Price:</strong>{{i.amt}}</p>
+        
+              </div><!--product detail  div end-->
+            
+        </div>
+        {% endfor %}
+        
+    </div>
+    <div class="col-md-3 "> 
+        <div class="p-3 shadow">
+            <h5>
+                Price Detail
+            </h5>
+            <p><b>Price({{n}} Items):</b>RS:{{total}}</p>
+            <p><b>Total Price:</b>RS:{{total}}</p>
+            <p><a href="/makepayment"><button class="btn btn-danger"> Make Payment</button></a></p>
+        </div>
+    </div>   
+
+</div>
+{% endblock 'main' %}

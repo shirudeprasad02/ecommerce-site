@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register page</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-md-5 mx-auto shadow p-3">
+                {% if errmsg %}
+                <div class="alert alert-danger" role="=alert">
+                  {{errmsg}}
+
+                </div>
+                {% endif %}
+                <form method="post">  <!--there are two method 1.post 2.get post is use to do not show data on upper side of page  -->
+                    {% csrf_token %}
+                    <h3 style="text-align: center;">User Login</h3>
+                    <div class="mb-3">
+                        <label for="Input4" class="form-label">UserName</label>
+                        <input type="text" class="form-control" id="Input4" aria-describedby="emailHelp" name="uname">
+                        <div id="emailHelp" class="form-text">We'll never share your UserName with anyone else.</div>
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="Input1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="Input1" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="Input2" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="Input2" name="passw">
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="Input3" class="form-label">Conform Password</label>
+                        <input type="password" class="form-control" id="Input3">
+                    </div> -->
+                    <!-- <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div> -->
+                      <button type="submit" class="btn btn-primary">Login</button>
+                      &nbsp; &nbsp;&nbsp;New User...? &nbsp; <a href="/register">Register </a>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+</body>
+</html>
